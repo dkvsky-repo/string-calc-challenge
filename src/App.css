@@ -1,0 +1,13 @@
+html {
+  background-color: rgb(248, 249, 250);
+}
+
+.App {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
+.App {
+  text-align: center;
+}
