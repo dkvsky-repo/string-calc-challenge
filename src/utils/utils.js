@@ -8,9 +8,8 @@
  * @returns {Array} An array of numbers.
  */
 export function getOperands(stringValue, { delimiter, itemLimit } = {}) {
-  // Step 1.
-  // - Support 2 numbers using comma delimiter
-  // - Convert invalid/missing numbers to zero
+  // Step 2.
+  // - Support unlimited number of numbers.
   const operands = stringValue.split(delimiter).map(operand => {
     operand = operand.trim();
     if (isNaN(operand) || operand === '') {

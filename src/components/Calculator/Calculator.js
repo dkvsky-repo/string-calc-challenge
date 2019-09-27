@@ -17,8 +17,7 @@ export default class Calculator extends Component {
     e.preventDefault();
     const { data } = this.state;
     const operands = getOperands(data.operands, {
-      delimiter: ',',
-      itemLimit: 2
+      delimiter: ','
     });
 
     data.sum = sumEntries(operands);
