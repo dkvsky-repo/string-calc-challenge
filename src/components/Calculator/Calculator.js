@@ -1,12 +1,68 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Calculator.scss';
+import { getOperands, sumEntries } from '../../utils/utils';
 
-const Calculator = () => {
-  return (
-    <main className='container calculator-wrapper'>
-      <p className='lead'>&nbsp;</p>
-    </main>
-  );
-};
+export default class Calculator extends Component {
+  state = {
+    data: { operands: '' }
+  };
 
-export default Calculator;
+  handleChange = e => {
+    const data = { ...this.state.data };
+    data[e.currentTarget.name] = e.currentTarget.value;
+    this.setState({ data });
+  };
+
+  getResults = e => {
+    e.preventDefault();
+    const { data } = this.state;
+    const operands = getOperands(data.operands, {
+      delimiter: ',',
+      itemLimit: 2
+    });
+
+    data.sum = sumEntries(operands);
+    this.setState({ data });
+  };
+
+  render() {
+    const { data } = this.state;
+
+    return (
+      <main className='container calculator-wrapper'>
+        <p className='lead'>&nbsp;</p>
+
+        <form>
+          <div className='form-group'>
+            <label htmlFor='formControlAddendsTextarea'>
+              Enter numbers to add:
+            </label>
+
+            <textarea
+              id='formControlAddendsTextarea'
+              className='form-control'
+              name='operands'
+              value={data.operands}
+              onChange={this.handleChange}
+            ></textarea>
+          </div>
+
+          <button
+            type='submit'
+            className='btn btn-primary'
+            onClick={this.getResults}
+          >
+            Submit
+          </button>
+        </form>
+
+        <section className='result mt-4'>
+          <p className='h3 text-secondary'>Result:</p>
+          <div className='alert alert-secondary display-4' role='alert'>
+            {data.sum}
+          </div>
+        </section>
+      </main>
+    );
+  }
+}
