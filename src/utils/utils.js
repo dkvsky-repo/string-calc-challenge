@@ -8,8 +8,6 @@
  * @returns {Array} An array of numbers.
  */
 export function getOperands(stringValue, { delimiter, itemLimit } = {}) {
-  // Step 2.
-  // - Support unlimited number of numbers.
   const operands = stringValue.split(delimiter).map(operand => {
     operand = operand.trim();
     if (isNaN(operand) || operand === '') {

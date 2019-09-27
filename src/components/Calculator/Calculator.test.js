@@ -30,3 +30,9 @@ describe('sumEntries', () => {
     expect(sumEntries([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])).toEqual(78);
   });
 });
+
+describe('support a newline character as an alternative delimiter', () => {
+  test('retrieve operands', () => {
+    expect(getOperands('1\n2,3', { delimiter: /,|\n/ })).toEqual([1, 2, 3]);
+  });
+});
