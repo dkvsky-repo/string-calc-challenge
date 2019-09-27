@@ -4,8 +4,7 @@ import { getOperands, sumEntries } from '../../utils/utils';
 
 export default class Calculator extends Component {
   state = {
-    data: { operands: '' },
-    errors: {}
+    data: { operands: '' }
   };
 
   handleChange = e => {
@@ -21,13 +20,13 @@ export default class Calculator extends Component {
       delimiter: ',',
       itemLimit: 2
     });
-    // const sum = sumEntries(operands);
+
     data.sum = sumEntries(operands);
     this.setState({ data });
   };
 
   render() {
-    const { data, errors } = this.state;
+    const { data } = this.state;
 
     return (
       <main className='container calculator-wrapper'>
@@ -44,7 +43,6 @@ export default class Calculator extends Component {
               className='form-control'
               name='operands'
               value={data.operands}
-              error={errors.operands}
               onChange={this.handleChange}
             ></textarea>
           </div>
