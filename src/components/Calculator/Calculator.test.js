@@ -44,3 +44,20 @@ describe('support a newline character as an alternative delimiter', () => {
     expect(getOperands('1\n2,3', { delimiter: /,|\n/ })).toEqual([1, 2, 3]);
   });
 });
+
+describe('Ignore numbers greater than 1000', () => {
+  test('getOperands filters out numbers > 1000', () => {
+    const stringValue = '2,1001,6';
+    const expectedOperands = [2, 6];
+    expect(getOperands(stringValue, { delimiter: /,|\n/ })).toEqual(
+      expectedOperands
+    );
+  });
+  test('sumEntries ignores numbers > 1000', () => {
+    const stringValue = '2,1001,6';
+    const expectedResult = 8;
+    expect(sumEntries(getOperands(stringValue, { delimiter: /,|\n/ }))).toEqual(
+      expectedResult
+    );
+  });
+});

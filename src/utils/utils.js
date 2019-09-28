@@ -8,13 +8,16 @@
  * @returns {Array} An array of numbers.
  */
 export function getOperands(stringValue, { delimiter, itemLimit } = {}) {
-  const operands = stringValue.split(delimiter).map(operand => {
+  let operands = stringValue.split(delimiter).map(operand => {
     operand = operand.trim();
     if (isNaN(operand) || operand === '') {
       operand = 0;
     }
     return parseInt(operand);
   });
+
+  // Ignore values greater than 1000.
+  operands = operands.filter(value => value < 1000);
 
   const negatives = operands.filter(number => number < 0);
   if (negatives.length > 0) {

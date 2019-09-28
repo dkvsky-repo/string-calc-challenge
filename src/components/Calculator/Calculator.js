@@ -16,9 +16,11 @@ export default class Calculator extends Component {
   getResults = e => {
     e.preventDefault();
     const { data } = this.state;
+
     const operands = getOperands(data.operands, {
       delimiter: /,|\n/
     });
+
     if (operands.invalid) {
       data.invalidOperands = true;
       data.errorMessage = `Negative values not allowed: ${operands.invalid}`;
