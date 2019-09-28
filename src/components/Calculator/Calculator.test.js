@@ -23,6 +23,14 @@ describe('getOperands', () => {
       expected
     );
   });
+
+  test('return negative numbers introduced', () => {
+    const stringValue = '1,2,-3,4,-5';
+    const expected = { invalid: '-3,-5' };
+    expect(getOperands(stringValue, { delimiter: /,|\n/ })).toEqual(
+      expect.objectContaining(expected)
+    );
+  });
 });
 
 describe('sumEntries', () => {

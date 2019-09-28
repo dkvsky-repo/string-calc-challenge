@@ -15,6 +15,13 @@ export function getOperands(stringValue, { delimiter, itemLimit } = {}) {
     }
     return parseInt(operand);
   });
+
+  const negatives = operands.filter(number => number < 0);
+  if (negatives.length > 0) {
+    // This will trigger an exception if returned
+    // and it will contain negative values introduced.
+    return { invalid: negatives.join(',') };
+  }
   return itemLimit ? operands.slice(0, itemLimit) : operands;
 }
 

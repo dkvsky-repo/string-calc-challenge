@@ -19,13 +19,21 @@ export default class Calculator extends Component {
     const operands = getOperands(data.operands, {
       delimiter: /,|\n/
     });
-
-    data.sum = sumEntries(operands);
+    if (operands.invalid) {
+      data.invalidOperands = true;
+      data.errorMessage = `Negative values not allowed: ${operands.invalid}`;
+    } else {
+      data.sum = sumEntries(operands);
+    }
     this.setState({ data });
   };
 
   render() {
     const { data } = this.state;
+
+    if (data.invalidOperands) {
+      throw new Error(data.errorMessage);
+    }
 
     return (
       <main className='container calculator-wrapper'>
