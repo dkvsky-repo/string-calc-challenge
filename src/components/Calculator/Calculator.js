@@ -17,10 +17,10 @@ export default class Calculator extends Component {
     e.preventDefault();
     const { data } = this.state;
 
-    const operands = getOperands(data.operands, {
-      delimiter: /,|\n/
-    });
+    // Grab entries from the form.
+    const operands = getOperands(data.operands);
 
+    // If negative numbers were entered.
     if (operands.invalid) {
       data.invalidOperands = true;
       data.errorMessage = `Negative values not allowed: ${operands.invalid}`;
