@@ -22,7 +22,11 @@ export function getOperands(
    * the default delimiters (comma or newline).
    */
   if (stringValue.match(customDelimiterPattern)) {
-    const customDelimiter = stringValue.match(customDelimiterPattern)[1];
+    // const customDelimiter = stringValue.match(customDelimiterPattern)[1];
+    const customDelimiter = stringValue
+      .match(customDelimiterPattern)[1]
+      .split(/\[|\]/)
+      .filter(item => item != '');
 
     // Remove custom pattern from string.
     cleanString = stringValue.replace(

@@ -73,3 +73,17 @@ describe('support for custom delimiters', () => {
     expect(sumEntries(getOperands(stringValue))).toEqual(expectedResult);
   });
 });
+
+describe('support for multiple custom delimiters', () => {
+  test('custom single delimiter of any length (***)', () => {
+    const stringValue = '//[***]\n11***22***33';
+    const expectedResult = 66;
+    expect(sumEntries(getOperands(stringValue))).toEqual(expectedResult);
+  });
+
+  test('custom single delimiter of any length - backwards compatibility', () => {
+    const stringValue = '//[***]\n11***22***33,1,\n1,2';
+    const expectedResult = 70;
+    expect(sumEntries(getOperands(stringValue))).toEqual(expectedResult);
+  });
+});
