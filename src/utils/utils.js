@@ -35,7 +35,14 @@ export function getOperands(
     );
 
     // Replace custom delimiter for a default one
-    cleanString = cleanString.split(customDelimiter).join(',');
+    if (Array.isArray(customDelimiter)) {
+      if (customDelimiter.length > 1) {
+        customDelimiter.map(separator => {
+          cleanString = cleanString.replace(separator, ',');
+        });
+      }
+      cleanString = cleanString.split(customDelimiter).join(',');
+    }
 
     // Apply default delimiter.
     cleanString = cleanString.split(defaultDelimiterPattern);

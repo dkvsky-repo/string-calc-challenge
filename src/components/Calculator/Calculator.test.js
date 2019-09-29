@@ -87,3 +87,17 @@ describe('support for multiple custom delimiters', () => {
     expect(sumEntries(getOperands(stringValue))).toEqual(expectedResult);
   });
 });
+
+describe('support for multiple delimiters of any length', () => {
+  test('multiple delimiter of any length (i.e. [*][!!][r9r])', () => {
+    const stringValue = '//[*][!!][r9r]\n11r9r22*33!!44';
+    const expectedResult = 110;
+    expect(sumEntries(getOperands(stringValue))).toEqual(expectedResult);
+  });
+
+  test('multiple delimiter of any length - backwards compatibility', () => {
+    const stringValue = '//[*][!!][r9r]\n11r9r22*33!!44\n5,5';
+    const expectedResult = 120;
+    expect(sumEntries(getOperands(stringValue))).toEqual(expectedResult);
+  });
+});
