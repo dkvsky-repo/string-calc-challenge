@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Calculator.scss';
 import { getOperands, sumEntries } from '../../utils/utils';
+import Howto from '../Howto';
 
 export default class Calculator extends Component {
   state = {
@@ -39,38 +40,43 @@ export default class Calculator extends Component {
 
     return (
       <main className='container calculator-wrapper'>
-        <p className='lead'>&nbsp;</p>
+        <div className='row'>
+          <Howto />
+          <div className='col'>
+            <p className='lead'>&nbsp;</p>
 
-        <form>
-          <div className='form-group'>
-            <label htmlFor='formControlAddendsTextarea'>
-              Enter numbers to add:
-            </label>
+            <form>
+              <div className='form-group'>
+                <label htmlFor='formControlAddendsTextarea'>
+                  Enter numbers to add:
+                </label>
 
-            <textarea
-              id='formControlAddendsTextarea'
-              className='form-control'
-              name='operands'
-              value={data.operands}
-              onChange={this.handleChange}
-            ></textarea>
+                <textarea
+                  id='formControlAddendsTextarea'
+                  className='form-control'
+                  name='operands'
+                  value={data.operands}
+                  onChange={this.handleChange}
+                ></textarea>
+              </div>
+
+              <button
+                type='submit'
+                className='btn btn-primary'
+                onClick={this.getResults}
+              >
+                Submit
+              </button>
+            </form>
+
+            <section className='result mt-4'>
+              <p className='h3 text-secondary'>Result:</p>
+              <div className='alert alert-secondary display-4' role='alert'>
+                {data.sum}
+              </div>
+            </section>
           </div>
-
-          <button
-            type='submit'
-            className='btn btn-primary'
-            onClick={this.getResults}
-          >
-            Submit
-          </button>
-        </form>
-
-        <section className='result mt-4'>
-          <p className='h3 text-secondary'>Result:</p>
-          <div className='alert alert-secondary display-4' role='alert'>
-            {data.sum}
-          </div>
-        </section>
+        </div>
       </main>
     );
   }

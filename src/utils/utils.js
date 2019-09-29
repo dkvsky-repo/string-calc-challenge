@@ -60,7 +60,7 @@ export function getOperands(
   });
 
   // Ignore values greater than 1000.
-  operands = operands.filter(value => value < 1000);
+  operands = operands.filter(value => value <= 1000);
 
   // Return negative values introduced.
   const negatives = operands.filter(number => number < 0);

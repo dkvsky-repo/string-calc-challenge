@@ -27,7 +27,9 @@ export default class ErrorBoundary extends Component {
             </span>
           </div>
           <div className='card-body'>
-            <h5 className='card-title'>Houston, we have a problem:</h5>
+            <h5 className='card-title'>
+              Houston, we have a problem: *** PLEASE REFRESH!!! ***
+            </h5>
             <p className='card-text'>
               {this.state.error && this.state.error.toString()}
               <pre>{this.state.errorInfo.componentStack}</pre>
